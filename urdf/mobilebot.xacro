@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<robot name="mobilebot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find mobilebot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find mobilebot_description)/urdf/mobilebot.trans" />
+<xacro:include filename="$(find mobilebot_description)/urdf/mobilebot.gazebo" />
+
+<!-- BASE LINK -->
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0005792285328756672 7.970344944745154e-07 0.0403411412663239" rpy="0 0 0"/>
+    <mass value="4.079939844889388"/>
+    <inertia ixx="0.023714" iyy="0.044684" izz="0.066606" ixy="-0.0" iyz="-0.0" ixz="-0.000114"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- LEFT FRONT WHEEL -->
+<link name="leftw_front_1">
+  <inertial>
+    <origin xyz="-6.938893903907228e-17 -0.007500000000000034 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="0.07012034802812415"/>
+    <inertia ixx="2.9e-05" iyy="5.6e-05" izz="2.9e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.115 0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/leftw_front_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.115 0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/leftw_front_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- LEFT BACK WHEEL -->
+<link name="leftw_back_1">
+  <inertial>
+    <origin xyz="-5.551115123125783e-17 -0.007500000000000007 2.7755575615628914e-17" rpy="0 0 0"/>
+    <mass value="0.07012034802812417"/>
+    <inertia ixx="2.9e-05" iyy="5.6e-05" izz="2.9e-05" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.115 0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/leftw_back_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.115 0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/leftw_back_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- RIGHT BACK WHEEL -->
+<link name="rightw_back_1">
+  <inertial>
+    <origin xyz="-1.5265566588595902e-16 0.007500000000000007 3.469446951953614e-17" rpy="0 0 0"/>
+    <mass value="0.07012034802812417"/>
+    <inertia ixx="2.9e-05" iyy="5.6e-05" izz="2.9e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.115 -0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/rightw_back_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.115 -0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/rightw_back_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- RIGHT FRONT WHEEL -->
+<link name="rightw_front_1">
+  <inertial>
+    <origin xyz="0.0 0.007500000000000007 5.551115123125783e-17" rpy="0 0 0"/>
+    <mass value="0.07012034802812417"/>
+    <inertia ixx="2.9e-05" iyy="5.6e-05" izz="2.9e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.115 -0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/rightw_front_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.115 -0.135 -0.04" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mobilebot_description/meshes/rightw_front_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- WHEEL JOINTS -->
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="-0.115 -0.135 0.04" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="leftw_front_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 3" type="continuous">
+  <origin xyz="0.115 -0.135 0.04" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="leftw_back_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 6" type="continuous">
+  <origin xyz="0.115 0.135 0.04" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rightw_back_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 7" type="continuous">
+  <origin xyz="-0.115 0.135 0.04" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rightw_front_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>
